@@ -1,5 +1,5 @@
 import numpy as np
-class joint:
+class Joint:
     minAngle = -np.pi/2
     maxAngle = np.pi/2
     def __init__(self,driver,channel,minPWM,maxPWM,zeroPWM,direction=1):
