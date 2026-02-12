@@ -5,7 +5,7 @@ import digitalio
 from adafruit_pca9685 import PCA9685
 import time
 import numpy as np
-calFile = "servo_calibration.json"
+calFile = "servo_calibration_with_offset.json"
 # Addresses and pins
 PCA1Addr = 0x40
 PCA2Addr = 0x41
@@ -24,8 +24,9 @@ pca1.frequency = freq
 pca2.frequency = freq
 
 legs = load_legs(pca1,pca2, calFile)
-for leg in legs:
-    leg.write_leg_angles(0,np.pi/4,-np.deg2rad(100),-np.pi/4)
+legs[1].write_leg_angles(0,np.deg2rad(80),-np.deg2rad(135),-np.deg2rad(50))
+# for leg in legs:
+#     leg.write_leg_angles(0,0,0,0)
 try:
     while True:
         pass

@@ -15,7 +15,8 @@
     "neutral": 1500,
     "plus_90": 530,
     "minus_90": 2540,
-    "direction": -1
+    "direction": -1,
+    "zero_offset_deg": 43.88059701492538
   },
   "3": {
     "neutral": 1540,
@@ -39,7 +40,8 @@
     "neutral": 1400,
     "plus_90": 400,
     "minus_90": 2360,
-    "direction": -1
+    "direction": -1,
+    "zero_offset_deg": 44.08163265306122
   },
   "7": {
     "neutral": 1580,
@@ -63,7 +65,8 @@
     "neutral": 1540,
     "plus_90": 550,
     "minus_90": 2550,
-    "direction": -1
+    "direction": -1,
+    "zero_offset_deg": 43.2
   },
   "11": {
     "neutral": 1550,
@@ -87,7 +90,8 @@
     "neutral": 1520,
     "plus_90": 2490,
     "minus_90": 460,
-    "direction": 1
+    "direction": 1,
+    "zero_offset_deg": 44.33497536945813
   },
   "15": {
     "neutral": 1590,
@@ -111,7 +115,8 @@
     "neutral": 1660,
     "plus_90": 2620,
     "minus_90": 660,
-    "direction": 1
+    "direction": 1,
+    "zero_offset_deg": 45.0
   },
   "19": {
     "neutral": 1690,
@@ -135,7 +140,8 @@
     "neutral": 1520,
     "plus_90": 2560,
     "minus_90": 520,
-    "direction": 1
+    "direction": 1,
+    "zero_offset_deg": 45.88235294117647
   },
   "23": {
     "neutral": 1480,

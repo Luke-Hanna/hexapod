@@ -1,8 +1,8 @@
 import numpy as np
 class Joint:
-    minAngle = np.deg2rad(-100)
-    maxAngle = np.deg2rad(100)
-    def __init__(self,driver,channel,minPWM,maxPWM,zeroPWM,direction=1):
+    minAngle = np.deg2rad(-105)
+    maxAngle = np.deg2rad(105)
+    def __init__(self,driver,channel,minPWM,maxPWM,zeroPWM,direction=1, zero_offset=0):
         self.driver = driver
         self.channel = channel
         self.minPWM = minPWM
@@ -11,17 +11,20 @@ class Joint:
         self.zeroPWM = zeroPWM
         self.PWMrad = (self.maxPWM - self.minPWM)/(np.pi)
         self.angle = None
+        self.zero_offset = zero_offset
     def clamp(self,angle):
         return max(self.minAngle, min(self.maxAngle, angle))
     def angle_to_pwm(self,angle):
+        angle = angle + self.zero_offset
         angle = self.clamp(angle)
+        
         return int(self.zeroPWM +self.direction*angle*self.PWMrad)
     def pwm_to_duty(self,pwm):
         return int(pwm*0xFFFF/20000)
     def set_angle(self,angle):
         self.angle = angle
         if self.driver is not None:
-            self.driver.channels[self.channel].duty_cycle = self.pwm_to_duty(self.angle_to_pwm(self.clamp(angle)))
+            self.driver.channels[self.channel].duty_cycle = self.pwm_to_duty(self.angle_to_pwm(angle))
 
 
 import json
@@ -41,5 +44,6 @@ def load_joints(driver1, driver2, path):
             direction = 1
         else:
             direction = -1
-        joints.append(Joint(driver, driverChannel, min(config["plus_90"], config["minus_90"]), max(config["plus_90"], config["minus_90"]), config["neutral"], direction))
+        zero_offset = np.deg2rad(config.get("zero_offset_deg",0.0))
+        joints.append(Joint(driver, driverChannel, min(config["plus_90"], config["minus_90"]), max(config["plus_90"], config["minus_90"]), config["neutral"], direction, zero_offset))
     return joints
