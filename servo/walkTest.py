@@ -48,7 +48,7 @@ try:
                 footPos.append(pos)
             for legNo in range(6):
                 hexapod.write_body_to_leg(legNo, footPos[legNo], -np.pi/2)
-            nextUpdate+=dt
+            nextUpdate = currTime + dt
 
 except KeyboardInterrupt:
     oe.value = True
