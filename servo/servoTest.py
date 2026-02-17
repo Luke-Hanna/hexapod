@@ -38,7 +38,15 @@ dt = 1/updateRate
 nextUpdate = time.time()
 try:
     while True:
-            hexapod.write_body_to_leg(5, [160*np.cos(np.deg2rad(60)), 160*np.sin(np.deg2rad(60)), -20] , -np.pi/2)
+        for leg in legs:
+            leg.write_leg_angles(0,np.deg2rad(32),np.deg2rad(-97),np.deg2rad(-24))
+        # hexapod.write_body_to_leg(0, [300*np.cos(np.deg2rad(120)), 300*np.sin(np.deg2rad(120)), -100] , -np.pi/2)
+        # hexapod.write_body_to_leg(1, [300*np.cos(np.deg2rad(180)), 300*np.sin(np.deg2rad(180)), -100] , -np.pi/2)
+        # hexapod.write_body_to_leg(2, [300*np.cos(np.deg2rad(240)), 300*np.sin(np.deg2rad(240)), -100] , -np.pi/2)
+        # hexapod.write_body_to_leg(3, [300*np.cos(np.deg2rad(300)), 300*np.sin(np.deg2rad(300)), -100] , -np.pi/2)
+        # hexapod.write_body_to_leg(4, [300*np.cos(np.deg2rad(000)), 300*np.sin(np.deg2rad(000)), -100] , -np.pi/2)
+        # hexapod.write_body_to_leg(5, [300*np.cos(np.deg2rad(60)), 300*np.sin(np.deg2rad(60)), -100] , -np.pi/2)
+        time.sleep(0.5)
 
 except KeyboardInterrupt:
     oe.value = True

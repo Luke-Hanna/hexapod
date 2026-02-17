@@ -30,10 +30,10 @@ pca2.frequency = freq
 legs = load_legs(pca1, pca2, calFile)
 hexapod = Hexapod(legs)
 t0 = time.time()
-gait = TripodGait(30, -100,170,0.5,1)
-vx = 50
-vy = 0
-updateRate = 100
+gait = TripodGait(30, -160,125+160,0.5,2)
+vx = 0
+vy = 50
+updateRate = 40
 dt = 1/updateRate
 nextUpdate = time.time()
 try:

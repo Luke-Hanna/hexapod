@@ -6,9 +6,9 @@
     "direction": 1
   },
   "1": {
-    "neutral": 1550,
-    "plus_90": 2270,
-    "minus_90": 910,
+    "neutral": 1460,
+    "plus_90": 2500,
+    "minus_90": 500,
     "direction": -1
   },
   "2": {

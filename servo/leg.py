@@ -32,6 +32,9 @@ class Leg:
         d1 = d - self.L4*np.cos(theta) - self.L1
         z1 = z - self.L4*np.sin(theta)
         dist = np.sqrt(d1**2 + z1**2)
+        c_raw = (self.L2**2 + self.L3**2 - dist**2) / (2*self.L2*self.L3)
+        if abs(c_raw) > 1.0:
+            print("IK UNREACHABLE?", "c_raw=", c_raw, "dist=", dist, "d1=", d1, "z1=", z1)
         c = (self.L2**2 + self.L3**2 - dist**2) / (2*self.L2*self.L3)
         c = np.clip(c, -1.0, 1.0)
         angle23 = np.arccos(c)
@@ -41,6 +44,10 @@ class Leg:
             theta3 = -theta3
         theta2 = angleHoriToThing - np.arctan2(self.L3*np.sin(theta3), self.L2 + self.L3*np.cos(theta3))
         theta4 = theta - theta2 - theta3
+        print(np.rad2deg(theta1))
+        print(np.rad2deg(theta2))
+        print(np.rad2deg(theta3))
+        print(np.rad2deg(theta4))
         return theta1, theta2, theta3, theta4
     def write_leg_pos(self,x,y,z,theta):
         self.write_leg_angles(*self.solve_IK(x,y,z,theta))
